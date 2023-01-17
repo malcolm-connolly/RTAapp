@@ -24,7 +24,7 @@ library(knitr)
 
 # ---- preamble ----
 
-load(here::here("data/dataSets.RData")) 
+load("data/dataSets.RData") 
 
 
 # ---- data preparation ----
@@ -52,7 +52,7 @@ model <- glm(formula = Accident_Severity_Rec ~ Speed_limit +
 # downloaded from... https://geoportal.statistics.gov.uk/datasets/6638c31a8e9842f98a037748f72258ed_0
 
 
-boundaries.17 <- st_read(dsn = here::here("data/Counties17"),
+boundaries.17 <- st_read(dsn = "data/Counties17",
                          layer = "Counties_and_Unitary_Authorities_(December_2017)_Boundaries_UK") %>%
     st_transform(crs = 4326)
 
