@@ -24,7 +24,7 @@ library(knitr)
 
 # ---- preamble ----
 
-load("www/dataSets.RData") 
+load("./www/dataSets.RData") 
 
 
 # ---- data preparation ----
