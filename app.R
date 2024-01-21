@@ -28,13 +28,13 @@ load("./www/dataSets.RData")
 
 
 # ---- data preparation ----
-accidents$Accident_Severity_Rec <- to_factor(accidents$Accident_Severity_Rec)
-accidents$Special_Conditions_Rec <- to_factor(accidents$Special_Conditions_Rec)
-accidents$Weekend_Rec <- to_factor(accidents$Weekend_Rec)
-accidents$Young_Driver <- to_factor(accidents$Young_Driver)
-accidents$Casualty_Class_Rec <- to_factor(accidents$Casualty_Class_Rec)
-accidents$Speed_limit <- to_factor(accidents$Speed_limit)
-accidents <- accidents %>% filter(!is.na(Speed_limit))
+# accidents$Accident_Severity_Rec <- to_factor(accidents$Accident_Severity_Rec)
+# accidents$Special_Conditions_Rec <- to_factor(accidents$Special_Conditions_Rec)
+# accidents$Weekend_Rec <- to_factor(accidents$Weekend_Rec)
+# accidents$Young_Driver <- to_factor(accidents$Young_Driver)
+# accidents$Casualty_Class_Rec <- to_factor(accidents$Casualty_Class_Rec)
+# accidents$Speed_limit <- to_factor(accidents$Speed_limit)
+# accidents <- accidents %>% filter(!is.na(Speed_limit))
 
 
 
@@ -52,22 +52,22 @@ model <- glm(formula = Accident_Severity_Rec ~ Speed_limit +
 # downloaded from... https://geoportal.statistics.gov.uk/datasets/6638c31a8e9842f98a037748f72258ed_0
 
 
-boundaries.17 <- st_read(dsn = "./www/Counties_and_Unitary_Authorities_(December_2017)_Boundaries_UK.shp",
-                         layer = "Counties_and_Unitary_Authorities_(December_2017)_Boundaries_UK") %>%
-    st_transform(crs = 4326)
+# boundaries.17 <- st_read(dsn = "./www/Counties_and_Unitary_Authorities_(December_2017)_Boundaries_UK.shp",
+#                          layer = "Counties_and_Unitary_Authorities_(December_2017)_Boundaries_UK") %>%
+#     st_transform(crs = 4326)
 
-simplifiedBoundaries.17 <-rmapshaper::ms_simplify(boundaries.17)
-
-country <- rep("red", 217)
-country[153:163] <- "white"
-country[164:195] <- "blue"
-country[196:217] <- "green"
-
-#The shape file has new LA Highway codes, where the accidents data contains some legacy codes.
-#details of ONS internal migration here
-#https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/migrationwithintheuk/methodologies/interalmigrationmethodology/internalmigrationqa2013tcm77368508.pdf
-simplifiedBoundaries.17$ctyua17cd[56] <- "E06000048"
-simplifiedBoundaries.17$ctyua17cd[92] <- "E08000020" 
+# simplifiedBoundaries.17 <-rmapshaper::ms_simplify(boundaries.17)
+# 
+# country <- rep("red", 217)
+# country[153:163] <- "white"
+# country[164:195] <- "blue"
+# country[196:217] <- "green"
+# 
+# #The shape file has new LA Highway codes, where the accidents data contains some legacy codes.
+# #details of ONS internal migration here
+# #https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/migrationwithintheuk/methodologies/interalmigrationmethodology/internalmigrationqa2013tcm77368508.pdf
+# simplifiedBoundaries.17$ctyua17cd[56] <- "E06000048"
+# simplifiedBoundaries.17$ctyua17cd[92] <- "E08000020" 
 
 
 # ---- User Interface ----
